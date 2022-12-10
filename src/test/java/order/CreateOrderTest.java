@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.hamcrest.core.IsEqual.equalTo;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class CreateOrderTest {
     private static final String INGREDIENT_ERROR_400 = "Ingredient ids must be provided";
@@ -48,7 +48,7 @@ public class CreateOrderTest {
                 .statusCode(200)
                 .and()
                 .body("success", equalTo(true));
-        assertEquals("Списки ингредиентов не совпадают", Objects.equals(ingredientsRequest, ingredientsResponse), true);
+        assertTrue("Списки ингредиентов не совпадают", Objects.equals(ingredientsRequest, ingredientsResponse));
     }
 
     @Test
@@ -63,7 +63,7 @@ public class CreateOrderTest {
                 .statusCode(200)
                 .and()
                 .body("success", equalTo(true));
-        assertEquals("Созадан заказ без авторизации", ingredientsResponse, null);
+        assertNull("Созадан заказ без авторизации", ingredientsResponse);
     }
 
     @Test
